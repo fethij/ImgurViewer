@@ -14,14 +14,14 @@ public class AccountRepository {
 
     private AccountRoomDatabase accountRoomDatabase;
     private AccountDao accountDao;
-    private MutableLiveData<Account> currentAccount;
+    private LiveData<Account> currentAccount;
 
     private Executor executor = Executors.newSingleThreadExecutor();
 
     public AccountRepository (Context context){
         accountRoomDatabase = AccountRoomDatabase.getDatabase(context);
         accountDao = accountRoomDatabase.accountDao();
-        currentAccount = (MutableLiveData<Account>) accountDao.getCurrentAccount();
+        currentAccount = accountDao.getCurrentAccount();
     }
 
     public LiveData<Account> getCurrentAccount(){

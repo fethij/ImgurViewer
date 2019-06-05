@@ -6,6 +6,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
@@ -22,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private WebView mWebView;
     private LoginViewModel loginViewModel;
+    private Boolean loggedIn = false;
 
     //private static final Pattern accessTokenPattern = Pattern.compile("access_token=([^&]*)");
     private static final Pattern refreshTokenPattern = Pattern.compile("refresh_token=([^&]*)");
@@ -38,9 +40,12 @@ public class LoginActivity extends AppCompatActivity {
         root.addView(mWebView);
         setContentView(root);
 
-        setupWebView();
-
-        mWebView.loadUrl("https://api.imgur.com/oauth2/authorize?client_id=" + BuildConfig.ClientId + "&response_type=token");
+        if (!loggedIn) {
+            setupWebView();
+            mWebView.loadUrl("https://api.imgur.com/oauth2/authorize?client_id=" + BuildConfig.ClientId + "&response_type=token");
+        }
+        else
+            finish();
     }
 
     private void initViewModel(){
@@ -48,7 +53,11 @@ public class LoginActivity extends AppCompatActivity {
         loginViewModel.getAccount().observe(this, new Observer<Account>() {
             @Override
             public void onChanged(@Nullable Account account) {
-                loginViewModel.Insert(account);
+                if (account != null){
+                    Toast.makeText(LoginActivity.this, "User already authenticated", Toast.LENGTH_LONG)
+                            .show();
+                    loggedIn = true;
+                }
             }
         });
 
@@ -77,17 +86,7 @@ public class LoginActivity extends AppCompatActivity {
                     m.find();
                     String refreshToken = m.group(1);
 
-//                    m = accessTokenPattern.matcher(url);
-//                    m.find();
-//                    String accessToken = m.group(1);
-//
-//                    m = expiresInPattern.matcher(url);
-//                    m.find();
-//                    long expiresIn = Long.valueOf(m.group(1));
-
                     loginViewModel.authAccount(refreshToken);
-
-                    //ImgurAuthorization.getInstance().saveRefreshToken(refreshToken, accessToken, expiresIn);
 
                     runOnUiThread(new Runnable() {
                         @Override

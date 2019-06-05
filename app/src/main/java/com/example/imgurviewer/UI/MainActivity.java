@@ -1,8 +1,10 @@
 package com.example.imgurviewer.UI;
 
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.annotation.NonNull;
@@ -58,6 +60,16 @@ public class MainActivity extends AppCompatActivity {
         logoutButton = findViewById(R.id.button2);
 
         loginViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
+        loginViewModel.getAccount().observe(this, new Observer<Account>() {
+            @Override
+            public void onChanged(@Nullable Account account) {
+                currentAccount = account;
+                if (currentAccount != null)
+                    mTextMessage.setText("Logged in as: " + account.getUsername());
+                else
+                    mTextMessage.setText("Not logged in");
+            }
+        });
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,12 +81,15 @@ public class MainActivity extends AppCompatActivity {
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                currentAccount = loginViewModel.getAccount().getValue();
-                if (currentAccount != null)
+                if (currentAccount != null) {
                     loginViewModel.Delete(loginViewModel.getAccount().getValue());
-                else
+                    mTextMessage.setText("User was logged out");
+                }
+                else {
                     Toast.makeText(MainActivity.this, "It was null...", Toast.LENGTH_LONG)
                             .show();
+                    mTextMessage.setText("No Logged In User!");
+                }
             }
         });
     }

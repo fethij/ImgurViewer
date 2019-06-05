@@ -2,8 +2,10 @@ package com.example.imgurviewer.UI;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
+import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.example.imgurviewer.API.ImgurRepository;
 import com.example.imgurviewer.Database.Account.AccountRepository;
@@ -19,23 +21,24 @@ public class LoginViewModel extends AndroidViewModel {
     private AccountRepository accountRepository;
     private ImgurRepository imgurRepository = new ImgurRepository();
 
-    private MutableLiveData<Account> authAccount;
+    private LiveData<Account> authAccount;
     private MutableLiveData<String> error = new MutableLiveData<>();
 
     public LoginViewModel(@NonNull Application application) {
         super(application);
         accountRepository = new AccountRepository(application.getApplicationContext());
-        authAccount = (MutableLiveData<Account>) accountRepository.getCurrentAccount();
+        authAccount = accountRepository.getCurrentAccount();
     }
 
     public MutableLiveData<String> getError() {
         return error;
     }
-    public MutableLiveData<Account> getAccount() {
+    public LiveData<Account> getAccount() {
         return authAccount;
     }
 
     public void authAccount(final String refresh_token){
+
         imgurRepository.authAccount(refresh_token).enqueue(new Callback<AccountAuth>() {
             @Override
             public void onResponse(Call<AccountAuth> call, Response<AccountAuth> response) {
@@ -48,8 +51,7 @@ public class LoginViewModel extends AndroidViewModel {
                             response.body().getExpiresIn()
                     );
 
-                    authAccount.setValue(authenticatedAccount);
-
+                    Insert(authenticatedAccount);
                 } else {
                     error.setValue("Api Error: " + response.message());
                 }
