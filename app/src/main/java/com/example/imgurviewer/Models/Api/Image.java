@@ -1,10 +1,14 @@
 package com.example.imgurviewer.Models.Api;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Image {
+public class Image implements Parcelable {
 
     @SerializedName("id")
     @Expose
@@ -403,4 +407,103 @@ public class Image {
         this.isAlbum = isAlbum;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.id);
+        dest.writeString(this.title);
+        dest.writeString(this.description);
+        dest.writeInt(this.datetime);
+        dest.writeString(this.type);
+        dest.writeByte(this.animated ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.width);
+        dest.writeInt(this.height);
+        dest.writeInt(this.size);
+        dest.writeInt(this.views);
+        dest.writeInt(this.bandwidth);
+        dest.writeParcelable((Parcelable) this.vote, flags);
+        dest.writeByte(this.favorite ? (byte) 1 : (byte) 0);
+        dest.writeByte(this.nsfw ? (byte) 1 : (byte) 0);
+        dest.writeString(this.section);
+        dest.writeString(this.accountUrl);
+        dest.writeInt(this.accountId);
+        dest.writeByte(this.isAd ? (byte) 1 : (byte) 0);
+        dest.writeByte(this.inMostViral ? (byte) 1 : (byte) 0);
+        dest.writeByte(this.hasSound ? (byte) 1 : (byte) 0);
+        dest.writeList(this.tags);
+        dest.writeInt(this.adType);
+        dest.writeString(this.adUrl);
+        dest.writeInt(this.edited);
+        dest.writeByte(this.inGallery ? (byte) 1 : (byte) 0);
+        dest.writeString(this.topic);
+        dest.writeInt(this.topicId);
+        dest.writeString(this.link);
+        dest.writeParcelable(this.adConfig, flags);
+        dest.writeInt(this.commentCount);
+        dest.writeInt(this.favoriteCount);
+        dest.writeInt(this.ups);
+        dest.writeInt(this.downs);
+        dest.writeInt(this.points);
+        dest.writeInt(this.score);
+        dest.writeByte(this.isAlbum ? (byte) 1 : (byte) 0);
+    }
+
+    public Image() {
+    }
+
+    protected Image(Parcel in) {
+        this.id = in.readString();
+        this.title = in.readString();
+        this.description = in.readString();
+        this.datetime = in.readInt();
+        this.type = in.readString();
+        this.animated = in.readByte() != 0;
+        this.width = in.readInt();
+        this.height = in.readInt();
+        this.size = in.readInt();
+        this.views = in.readInt();
+        this.bandwidth = in.readInt();
+        this.vote = in.readParcelable(Object.class.getClassLoader());
+        this.favorite = in.readByte() != 0;
+        this.nsfw = in.readByte() != 0;
+        this.section = in.readString();
+        this.accountUrl = in.readString();
+        this.accountId = in.readInt();
+        this.isAd = in.readByte() != 0;
+        this.inMostViral = in.readByte() != 0;
+        this.hasSound = in.readByte() != 0;
+        this.tags = new ArrayList<Tag>();
+        in.readList(this.tags, Tag.class.getClassLoader());
+        this.adType = in.readInt();
+        this.adUrl = in.readString();
+        this.edited = in.readInt();
+        this.inGallery = in.readByte() != 0;
+        this.topic = in.readString();
+        this.topicId = in.readInt();
+        this.link = in.readString();
+        this.adConfig = in.readParcelable(AdConfig.class.getClassLoader());
+        this.commentCount = in.readInt();
+        this.favoriteCount = in.readInt();
+        this.ups = in.readInt();
+        this.downs = in.readInt();
+        this.points = in.readInt();
+        this.score = in.readInt();
+        this.isAlbum = in.readByte() != 0;
+    }
+
+    public static final Parcelable.Creator<Image> CREATOR = new Parcelable.Creator<Image>() {
+        @Override
+        public Image createFromParcel(Parcel source) {
+            return new Image(source);
+        }
+
+        @Override
+        public Image[] newArray(int size) {
+            return new Image[size];
+        }
+    };
 }
