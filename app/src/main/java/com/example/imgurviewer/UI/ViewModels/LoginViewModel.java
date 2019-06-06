@@ -1,4 +1,4 @@
-package com.example.imgurviewer.UI;
+package com.example.imgurviewer.UI.ViewModels;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;

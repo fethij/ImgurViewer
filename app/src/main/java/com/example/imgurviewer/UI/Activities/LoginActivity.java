@@ -1,12 +1,10 @@
-package com.example.imgurviewer.UI;
+package com.example.imgurviewer.UI.Activities;
 
-import android.app.Activity;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
@@ -15,6 +13,7 @@ import android.widget.Toast;
 import com.example.imgurviewer.BuildConfig;
 import com.example.imgurviewer.Models.Database.Account;
 import com.example.imgurviewer.R;
+import com.example.imgurviewer.UI.ViewModels.LoginViewModel;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
