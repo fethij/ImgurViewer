@@ -1,9 +1,12 @@
 package com.example.imgurviewer.Models.Api;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Tag {
+public class Tag implements Parcelable {
 
     @SerializedName("name")
     @Expose
@@ -171,4 +174,60 @@ public class Tag {
         this.descriptionAnnotations = descriptionAnnotations;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.name);
+        dest.writeString(this.displayName);
+        dest.writeInt(this.followers);
+        dest.writeInt(this.totalItems);
+        dest.writeByte(this.following ? (byte) 1 : (byte) 0);
+        dest.writeString(this.backgroundHash);
+        dest.writeParcelable((Parcelable) this.thumbnailHash, flags);
+        dest.writeString(this.accent);
+        dest.writeByte(this.backgroundIsAnimated ? (byte) 1 : (byte) 0);
+        dest.writeByte(this.thumbnailIsAnimated ? (byte) 1 : (byte) 0);
+        dest.writeByte(this.isPromoted ? (byte) 1 : (byte) 0);
+        dest.writeString(this.description);
+        dest.writeParcelable((Parcelable) this.logoHash, flags);
+        dest.writeParcelable((Parcelable) this.logoDestinationUrl, flags);
+        dest.writeParcelable(this.descriptionAnnotations, flags);
+    }
+
+    public Tag() {
+    }
+
+    protected Tag(Parcel in) {
+        this.name = in.readString();
+        this.displayName = in.readString();
+        this.followers = in.readInt();
+        this.totalItems = in.readInt();
+        this.following = in.readByte() != 0;
+        this.backgroundHash = in.readString();
+        this.thumbnailHash = in.readParcelable(Object.class.getClassLoader());
+        this.accent = in.readString();
+        this.backgroundIsAnimated = in.readByte() != 0;
+        this.thumbnailIsAnimated = in.readByte() != 0;
+        this.isPromoted = in.readByte() != 0;
+        this.description = in.readString();
+        this.logoHash = in.readParcelable(Object.class.getClassLoader());
+        this.logoDestinationUrl = in.readParcelable(Object.class.getClassLoader());
+        this.descriptionAnnotations = in.readParcelable(DescriptionAnnotations.class.getClassLoader());
+    }
+
+    public static final Parcelable.Creator<Tag> CREATOR = new Parcelable.Creator<Tag>() {
+        @Override
+        public Tag createFromParcel(Parcel source) {
+            return new Tag(source);
+        }
+
+        @Override
+        public Tag[] newArray(int size) {
+            return new Tag[size];
+        }
+    };
 }

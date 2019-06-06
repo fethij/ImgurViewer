@@ -42,7 +42,7 @@ public class Image implements Parcelable {
     private int views;
     @SerializedName("bandwidth")
     @Expose
-    private int bandwidth;
+    private long bandwidth;
     @SerializedName("vote")
     @Expose
     private Object vote;
@@ -199,11 +199,11 @@ public class Image implements Parcelable {
         this.views = views;
     }
 
-    public int getBandwidth() {
+    public long getBandwidth() {
         return bandwidth;
     }
 
-    public void setBandwidth(int bandwidth) {
+    public void setBandwidth(long bandwidth) {
         this.bandwidth = bandwidth;
     }
 
@@ -424,7 +424,7 @@ public class Image implements Parcelable {
         dest.writeInt(this.height);
         dest.writeInt(this.size);
         dest.writeInt(this.views);
-        dest.writeInt(this.bandwidth);
+        dest.writeLong(this.bandwidth);
         dest.writeParcelable((Parcelable) this.vote, flags);
         dest.writeByte(this.favorite ? (byte) 1 : (byte) 0);
         dest.writeByte(this.nsfw ? (byte) 1 : (byte) 0);
@@ -466,7 +466,7 @@ public class Image implements Parcelable {
         this.height = in.readInt();
         this.size = in.readInt();
         this.views = in.readInt();
-        this.bandwidth = in.readInt();
+        this.bandwidth = in.readLong();
         this.vote = in.readParcelable(Object.class.getClassLoader());
         this.favorite = in.readByte() != 0;
         this.nsfw = in.readByte() != 0;

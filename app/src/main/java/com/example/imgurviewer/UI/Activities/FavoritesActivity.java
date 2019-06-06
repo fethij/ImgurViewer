@@ -14,6 +14,8 @@ import com.example.imgurviewer.R;
 
 public class FavoritesActivity extends AppCompatActivity {
 
+    public static final String FAVORITE_DETAILS = "FavoriteDetails";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

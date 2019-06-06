@@ -12,6 +12,8 @@ import com.example.imgurviewer.R;
 
 public class SettingsActivity extends AppCompatActivity {
 
+    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,7 +23,7 @@ public class SettingsActivity extends AppCompatActivity {
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navView.getMenu().getItem(2).setChecked(true);
 
-        TextView titleView = findViewById(R.id.settingstTitle);
+        //TextView titleView = findViewById(R.id.settingstTitle);
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener

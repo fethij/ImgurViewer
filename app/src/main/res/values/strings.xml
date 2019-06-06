@@ -6,4 +6,44 @@
     <string name="title_settings">Settings</string>
     <string name="imageDescription">Grid cell that contains an image relevant to a search</string>
     <string name="DetailTitle">Details</string>
+    <string name="emptySearchMessage">Search text was empty</string>
+    <string name="btnFavoriteText">Favorite</string>
+    <string name="btnUnfavoriteText">Unfavorite</string>
+    <string name="titleLabel">Title:</string>
+    <string name="detailDescriptionLabelText">Description:</string>
+    <string name="detailSaveButtonText">Save</string>
+    <string name="imageViewNoBitmap">Image isn\'t loaded yet!</string>
+    <string name="favImageNotificationTitle">Favorite image</string>
+    <string name="notificationAddFavMessage">Image was added to your favorites</string>
+    <string name="notificatoinRemoveFavMessage">Image was removed from your favorites</string>
+    <string name="notificationSaveTitle">Saved image</string>
+    <string name="settingsCurrentUserLabel">Current user:</string>
+    <string name="settingsBtnSignIn">Sign in</string>
+    <string name="settingsBtnSignOut">Sign out</string>
+    <string name="settingsSearchSortLabel">Search sort order</string>
+    <string name="settingsSearchWindowLabel">Search window options</string>
+    <string name="settingsQueryTypeLabel">Query type</string>
+    <string name="settingsFavSortLabel">Favorite sort options</string>
+    <string-array name="searchSortOrderOptions">
+        <item>time</item>
+        <item>viral</item>
+        <item>top</item>
+    </string-array>
+    <string-array name="searchWindowOptions">
+        <item>all</item>
+        <item>day</item>
+        <item>week</item>
+        <item>month</item>
+        <item>year</item>
+    </string-array>
+    <string-array name="searchQueryTypeOptions">
+        <item>default</item>
+        <item>all</item>
+        <item>any</item>
+        <item>exactly</item>
+    </string-array>
+    <string-array name="favoriteSortOptions">
+        <item>newest</item>
+        <item>oldest</item>
+    </string-array>
 </resources>

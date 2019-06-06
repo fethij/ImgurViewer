@@ -24,9 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     private LoginViewModel loginViewModel;
     private Boolean loggedIn = false;
 
-    //private static final Pattern accessTokenPattern = Pattern.compile("access_token=([^&]*)");
     private static final Pattern refreshTokenPattern = Pattern.compile("refresh_token=([^&]*)");
-    //private static final Pattern expiresInPattern = Pattern.compile("expires_in=(\\d+)");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

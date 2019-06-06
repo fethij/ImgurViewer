@@ -21,6 +21,6 @@ public interface SettingsDao {
     @Delete
     void delete (Settings setting);
 
-    @Query("SELECT * FROM settings")
+    @Query("SELECT * FROM settings LIMIT 1")
     public LiveData<Settings> getSettings();
 }

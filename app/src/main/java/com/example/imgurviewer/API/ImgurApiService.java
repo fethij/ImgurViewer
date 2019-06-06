@@ -18,32 +18,34 @@ import retrofit2.http.Url;
 
 public interface ImgurApiService {
 
-    @GET("/3/gallery/search{sort}{window}")
+    @GET("/3/gallery/search/{sort}/{window}")
     Call<Images> searchImages (
             @Header("Authorization") String auth,
-            @Query("q") String keywords,
-            @Query("q_type") String type,
             @Path(value = "sort") String sort,
-            @Path(value = "window") String window
+            @Path(value = "window") String window,
+            @Query("q") String keywords,
+            @Query("q_type") String type
     );
 
-    @GET("/3/gallery/search{sort}{window}")
+    @GET("/3/gallery/search/{sort}/{window}")
     Call<Images> searchImagesAny(
             @Header("Authorization") String auth,
-            @Query("q_any") String keywords,
-            @Query("q_type") String type,
             @Path(value = "sort") String sort,
-            @Path(value = "window") String window
+            @Path(value = "window") String window,
+            @Query("q_any") String keywords,
+            @Query("q_type") String type
     );
 
     @POST("/3/image/{image_id}/favorite")
     Call<Favorite> favoriteImage(
             @Header("Authorization") String auth,
-            @Part(value = "image_id") String image_id
+            @Path(value = "image_id") String image_id
     );
 
     @POST("/oauth2/token")
     Call<AccountAuth> authAccount(
             @Body AccountAuthBody body
     );
+
+
 }

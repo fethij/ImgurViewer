@@ -68,9 +68,9 @@ public class LoginViewModel extends AndroidViewModel {
         accountRepository.insert(account);
     }
 
-    public void Update(Account account){
-        accountRepository.update(account);
-    }
+//    public void Update(Account account){
+//        accountRepository.update(account);
+//    }
 
     public void Delete(Account account){
         accountRepository.delete(account);
