@@ -34,18 +34,20 @@ import com.example.imgurviewer.UI.ViewModels.SettingsViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FavoritesActivity extends AppCompatActivity implements RecyclerView.OnItemTouchListener {
+public class FavoritesActivity extends AppCompatActivity {// implements RecyclerView.OnItemTouchListener {
 
     public static final String FAVORITE_DETAILS = "FavoriteDetails";
     public static final int FAVORITE_CODE = 8412;
     private Boolean didFirstCall = false;
+
+    private Boolean twoPane = false;
 
     private List<FavImage> images = new ArrayList<>();
     private FavoritesViewModel favoritesViewModel;
     private SettingsViewModel settingsViewModel;
     private FavoritesAdapter adapter;
     private RecyclerView favRecyclerView;
-    private GestureDetector gestureDetector;
+    //private GestureDetector gestureDetector;
 
     private Account currentAccount;
     private Settings currentSettings;
@@ -61,23 +63,27 @@ public class FavoritesActivity extends AppCompatActivity implements RecyclerView
 
         initSettingsViewModel();
         initFavoritesViewModel();
+
+        if (findViewById(R.id.favorite_detail_container) != null)
+            twoPane = true;
+
         initRecyclerView();
     }
 
     private void initRecyclerView() {
-        adapter = new FavoritesAdapter(images);
+        adapter = new FavoritesAdapter(this, images, twoPane);
         favRecyclerView = findViewById(R.id.favoriteRecyclerView);
-        favRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        //favRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         favRecyclerView.setAdapter(adapter);
         favRecyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL));
 
-        gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener(){
-            @Override
-            public boolean onSingleTapUp(MotionEvent e){
-                return true;
-            }
-        });
-        favRecyclerView.addOnItemTouchListener(this);
+//        gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener(){
+//            @Override
+//            public boolean onSingleTapUp(MotionEvent e){
+//                return true;
+//            }
+//        });
+        //favRecyclerView.addOnItemTouchListener(this);
     }
 
     private void initFavoritesViewModel() {
@@ -139,7 +145,7 @@ public class FavoritesActivity extends AppCompatActivity implements RecyclerView
 
     private void updateUI(){
         if (adapter == null){
-            adapter = new FavoritesAdapter(images);
+            adapter = new FavoritesAdapter(this, images, twoPane);
             favRecyclerView.setAdapter(adapter);
         }
         else
@@ -170,27 +176,27 @@ public class FavoritesActivity extends AppCompatActivity implements RecyclerView
     };
 
 
-    @Override
-    public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
-        View child = rv.findChildViewUnder(e.getX(), e.getY());
-        if (child != null){
-            int adapterPosition = rv.getChildAdapterPosition(child);
-            if (gestureDetector.onTouchEvent(e)){
-                Intent intent = new Intent(FavoritesActivity.this, ImageDetailActivity.class);
-                intent.putExtra(FAVORITE_DETAILS, images.get(adapterPosition));
-                startActivityForResult(intent, FAVORITE_CODE);
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public void onTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) {
-
-    }
-
-    @Override
-    public void onRequestDisallowInterceptTouchEvent(boolean b) {
-
-    }
+//    @Override
+//    public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+//        View child = rv.findChildViewUnder(e.getX(), e.getY());
+//        if (child != null){
+//            int adapterPosition = rv.getChildAdapterPosition(child);
+//            if (gestureDetector.onTouchEvent(e)){
+//                Intent intent = new Intent(FavoritesActivity.this, ImageDetailActivity.class);
+//                intent.putExtra(FAVORITE_DETAILS, images.get(adapterPosition));
+//                startActivityForResult(intent, FAVORITE_CODE);
+//            }
+//        }
+//        return false;
+//    }
+//
+//    @Override
+//    public void onTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) {
+//
+//    }
+//
+//    @Override
+//    public void onRequestDisallowInterceptTouchEvent(boolean b) {
+//
+//    }
 }
