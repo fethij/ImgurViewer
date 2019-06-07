@@ -1,0 +1,470 @@
+package com.example.imgurviewer.Models.Api;
+
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.ArrayList;
+import java.util.List;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+public class FavImage implements Parcelable {
+
+    @SerializedName("id")
+    @Expose
+    private String id;
+    @SerializedName("title")
+    @Expose
+    private String title;
+    @SerializedName("description")
+    @Expose
+    private String description;
+    @SerializedName("datetime")
+    @Expose
+    private int datetime;
+    @SerializedName("type")
+    @Expose
+    private String type;
+    @SerializedName("animated")
+    @Expose
+    private boolean animated;
+    @SerializedName("width")
+    @Expose
+    private int width;
+    @SerializedName("height")
+    @Expose
+    private int height;
+    @SerializedName("size")
+    @Expose
+    private int size;
+    @SerializedName("views")
+    @Expose
+    private int views;
+    @SerializedName("bandwidth")
+    @Expose
+    private long bandwidth;
+    @SerializedName("vote")
+    @Expose
+    private Object vote;
+    @SerializedName("favorite")
+    @Expose
+    private boolean favorite;
+    @SerializedName("nsfw")
+    @Expose
+    private Object nsfw;
+    @SerializedName("section")
+    @Expose
+    private Object section;
+    @SerializedName("account_url")
+    @Expose
+    private String accountUrl;
+    @SerializedName("account_id")
+    @Expose
+    private int accountId;
+    @SerializedName("is_ad")
+    @Expose
+    private boolean isAd;
+    @SerializedName("in_most_viral")
+    @Expose
+    private int inMostViral;
+    @SerializedName("has_sound")
+    @Expose
+    private boolean hasSound;
+    @SerializedName("tags")
+    @Expose
+    private List<Object> tags = null;
+    @SerializedName("ad_type")
+    @Expose
+    private int adType;
+    @SerializedName("ad_url")
+    @Expose
+    private String adUrl;
+    @SerializedName("edited")
+    @Expose
+    private int edited;
+    @SerializedName("in_gallery")
+    @Expose
+    private boolean inGallery;
+    @SerializedName("link")
+    @Expose
+    private String link;
+    @SerializedName("comment_count")
+    @Expose
+    private Object commentCount;
+    @SerializedName("favorite_count")
+    @Expose
+    private Object favoriteCount;
+    @SerializedName("ups")
+    @Expose
+    private int ups;
+    @SerializedName("downs")
+    @Expose
+    private int downs;
+    @SerializedName("points")
+    @Expose
+    private int points;
+    @SerializedName("score")
+    @Expose
+    private Object score;
+    @SerializedName("is_album")
+    @Expose
+    private boolean isAlbum;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getDatetime() {
+        return datetime;
+    }
+
+    public void setDatetime(int datetime) {
+        this.datetime = datetime;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public boolean isAnimated() {
+        return animated;
+    }
+
+    public void setAnimated(boolean animated) {
+        this.animated = animated;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    public int getViews() {
+        return views;
+    }
+
+    public void setViews(int views) {
+        this.views = views;
+    }
+
+    public long getBandwidth() {
+        return bandwidth;
+    }
+
+    public void setBandwidth(long bandwidth) {
+        this.bandwidth = bandwidth;
+    }
+
+    public Object getVote() {
+        return vote;
+    }
+
+    public void setVote(Object vote) {
+        this.vote = vote;
+    }
+
+    public boolean isFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
+    }
+
+    public Object getNsfw() {
+        return nsfw;
+    }
+
+    public void setNsfw(Object nsfw) {
+        this.nsfw = nsfw;
+    }
+
+    public Object getSection() {
+        return section;
+    }
+
+    public void setSection(Object section) {
+        this.section = section;
+    }
+
+    public String getAccountUrl() {
+        return accountUrl;
+    }
+
+    public void setAccountUrl(String accountUrl) {
+        this.accountUrl = accountUrl;
+    }
+
+    public int getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(int accountId) {
+        this.accountId = accountId;
+    }
+
+    public boolean isIsAd() {
+        return isAd;
+    }
+
+    public void setIsAd(boolean isAd) {
+        this.isAd = isAd;
+    }
+
+    public int getInMostViral() {
+        return inMostViral;
+    }
+
+    public void setInMostViral(int inMostViral) {
+        this.inMostViral = inMostViral;
+    }
+
+    public boolean isHasSound() {
+        return hasSound;
+    }
+
+    public void setHasSound(boolean hasSound) {
+        this.hasSound = hasSound;
+    }
+
+    public List<Object> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Object> tags) {
+        this.tags = tags;
+    }
+
+    public int getAdType() {
+        return adType;
+    }
+
+    public void setAdType(int adType) {
+        this.adType = adType;
+    }
+
+    public String getAdUrl() {
+        return adUrl;
+    }
+
+    public void setAdUrl(String adUrl) {
+        this.adUrl = adUrl;
+    }
+
+    public int getEdited() {
+        return edited;
+    }
+
+    public void setEdited(int edited) {
+        this.edited = edited;
+    }
+
+    public boolean isInGallery() {
+        return inGallery;
+    }
+
+    public void setInGallery(boolean inGallery) {
+        this.inGallery = inGallery;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public Object getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(Object commentCount) {
+        this.commentCount = commentCount;
+    }
+
+    public Object getFavoriteCount() {
+        return favoriteCount;
+    }
+
+    public void setFavoriteCount(Object favoriteCount) {
+        this.favoriteCount = favoriteCount;
+    }
+
+    public int getUps() {
+        return ups;
+    }
+
+    public void setUps(int ups) {
+        this.ups = ups;
+    }
+
+    public int getDowns() {
+        return downs;
+    }
+
+    public void setDowns(int downs) {
+        this.downs = downs;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
+    public Object getScore() {
+        return score;
+    }
+
+    public void setScore(Object score) {
+        this.score = score;
+    }
+
+    public boolean isIsAlbum() {
+        return isAlbum;
+    }
+
+    public void setIsAlbum(boolean isAlbum) {
+        this.isAlbum = isAlbum;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.id);
+        dest.writeString(this.title);
+        dest.writeString(this.description);
+        dest.writeInt(this.datetime);
+        dest.writeString(this.type);
+        dest.writeByte(this.animated ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.width);
+        dest.writeInt(this.height);
+        dest.writeInt(this.size);
+        dest.writeInt(this.views);
+        dest.writeLong(this.bandwidth);
+        dest.writeParcelable((Parcelable) this.vote, flags);
+        dest.writeByte(this.favorite ? (byte) 1 : (byte) 0);
+        dest.writeParcelable((Parcelable) this.nsfw, flags);
+        dest.writeParcelable((Parcelable) this.section, flags);
+        dest.writeString(this.accountUrl);
+        dest.writeInt(this.accountId);
+        dest.writeByte(this.isAd ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.inMostViral);
+        dest.writeByte(this.hasSound ? (byte) 1 : (byte) 0);
+        dest.writeList(this.tags);
+        dest.writeInt(this.adType);
+        dest.writeString(this.adUrl);
+        dest.writeInt(this.edited);
+        dest.writeByte(this.inGallery ? (byte) 1 : (byte) 0);
+        dest.writeString(this.link);
+        dest.writeParcelable((Parcelable) this.commentCount, flags);
+        dest.writeParcelable((Parcelable) this.favoriteCount, flags);
+        dest.writeInt(this.ups);
+        dest.writeInt(this.downs);
+        dest.writeInt(this.points);
+        dest.writeParcelable((Parcelable) this.score, flags);
+        dest.writeByte(this.isAlbum ? (byte) 1 : (byte) 0);
+    }
+
+    public FavImage() {
+    }
+
+    protected FavImage(Parcel in) {
+        this.id = in.readString();
+        this.title = in.readString();
+        this.description = in.readString();
+        this.datetime = in.readInt();
+        this.type = in.readString();
+        this.animated = in.readByte() != 0;
+        this.width = in.readInt();
+        this.height = in.readInt();
+        this.size = in.readInt();
+        this.views = in.readInt();
+        this.bandwidth = in.readLong();
+        this.vote = in.readParcelable(Object.class.getClassLoader());
+        this.favorite = in.readByte() != 0;
+        this.nsfw = in.readParcelable(Object.class.getClassLoader());
+        this.section = in.readParcelable(Object.class.getClassLoader());
+        this.accountUrl = in.readString();
+        this.accountId = in.readInt();
+        this.isAd = in.readByte() != 0;
+        this.inMostViral = in.readInt();
+        this.hasSound = in.readByte() != 0;
+        this.tags = new ArrayList<Object>();
+        in.readList(this.tags, Object.class.getClassLoader());
+        this.adType = in.readInt();
+        this.adUrl = in.readString();
+        this.edited = in.readInt();
+        this.inGallery = in.readByte() != 0;
+        this.link = in.readString();
+        this.commentCount = in.readParcelable(Object.class.getClassLoader());
+        this.favoriteCount = in.readParcelable(Object.class.getClassLoader());
+        this.ups = in.readInt();
+        this.downs = in.readInt();
+        this.points = in.readInt();
+        this.score = in.readParcelable(Object.class.getClassLoader());
+        this.isAlbum = in.readByte() != 0;
+    }
+
+    public static final Parcelable.Creator<FavImage> CREATOR = new Parcelable.Creator<FavImage>() {
+        @Override
+        public FavImage createFromParcel(Parcel source) {
+            return new FavImage(source);
+        }
+
+        @Override
+        public FavImage[] newArray(int size) {
+            return new FavImage[size];
+        }
+    };
+}

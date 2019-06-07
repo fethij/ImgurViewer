@@ -54,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "User already authenticated", Toast.LENGTH_LONG)
                             .show();
                     loggedIn = true;
+                    finish();
                 }
             }
         });

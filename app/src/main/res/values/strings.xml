@@ -24,6 +24,10 @@
     <string name="settingsSearchWindowLabel">Search window options</string>
     <string name="settingsQueryTypeLabel">Query type</string>
     <string name="settingsFavSortLabel">Favorite sort options</string>
+    <string name="settingsUsernameValueNoUser">No active user</string>
+    <string name="settingsUserSignOut">User was signed out</string>
+    <string name="settingsUpdatesSettingsMessage">Settings were updated</string>
+    <string name="searchHint">Search</string>
     <string-array name="searchSortOrderOptions">
         <item>time</item>
         <item>viral</item>

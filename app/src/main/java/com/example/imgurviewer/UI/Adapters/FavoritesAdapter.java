@@ -1,7 +1,6 @@
 package com.example.imgurviewer.UI.Adapters;
 
 import android.content.Context;
-import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,16 +10,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.imgurviewer.Models.Api.FavImage;
 import com.example.imgurviewer.Models.Api.Image;
 import com.example.imgurviewer.R;
 
 import java.util.List;
 
-public class favoritesAdapter extends RecyclerView.Adapter<favoritesAdapter.ViewHolder> {
+public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.ViewHolder> {
 
-    private List<Image> images;
+    private List<FavImage> images;
 
-    public favoritesAdapter(List<Image> imageList){
+    public FavoritesAdapter(List<FavImage> imageList){
         images = imageList;
     }
 
@@ -35,7 +35,7 @@ public class favoritesAdapter extends RecyclerView.Adapter<favoritesAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        Image image = images.get(i);
+        FavImage image = images.get(i);
         viewHolder.imageTitle.setText(image.getTitle());
         viewHolder.imageDescription.setText(image.getDescription());
         Glide.with(viewHolder.itemView).load(image.getLink()).into(viewHolder.imagePreview);
@@ -46,7 +46,7 @@ public class favoritesAdapter extends RecyclerView.Adapter<favoritesAdapter.View
         return images.size();
     }
 
-    public void updateImages(List<Image> newImages){
+    public void updateImages(List<FavImage> newImages){
         images = newImages;
         if (newImages != null)
             this.notifyDataSetChanged();

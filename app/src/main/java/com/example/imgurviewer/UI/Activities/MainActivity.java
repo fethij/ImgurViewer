@@ -36,13 +36,13 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements RecyclerView.OnItemTouchListener{
 
-    private TextView mTextMessage;
-    private Button loginButton;
-    private Button logoutButton;
+    //private TextView mTextMessage;
+    //private Button loginButton;
+    //private Button logoutButton;
 
-    private LoginViewModel loginViewModel;
+    //private LoginViewModel loginViewModel;
     private SearchViewModel searchViewModel;
-    private Account currentAccount;
+    //private Account currentAccount;
 
     private EditText searchText;
     private Button searchButton;
@@ -61,16 +61,19 @@ public class MainActivity extends AppCompatActivity implements RecyclerView.OnIt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTextMessage = findViewById(R.id.message);
+        //mTextMessage = findViewById(R.id.message);
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navView.getMenu().getItem(0).setChecked(true);
 
-        initLoginViewModel();
+        //initLoginViewModel();
         initSearchViewModel();
         initRecyclerView();
+        initSearchButton();
+    }
 
+    private void initSearchButton() {
         searchText = findViewById(R.id.searchEditText);
 
         searchButton = findViewById(R.id.searchButton);
@@ -86,7 +89,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerView.OnIt
                 }
             }
         });
-
     }
 
     private void initRecyclerView() {
@@ -151,35 +153,35 @@ public class MainActivity extends AppCompatActivity implements RecyclerView.OnIt
             @Override
             public void onChanged(@Nullable Settings settings) {
                 currentSettings = settings;
-                if (currentSettings == null)
-                    searchViewModel.Insert(new Settings("time", "all", "any", "newest"));
+
+                    //searchViewModel.Insert(new Settings("time", "all", "any", "newest"));
             }
         });
 
     }
 
-    private void initLoginViewModel(){
-        loginViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
-        loginViewModel.getAccount().observe(this, new Observer<Account>() {
-            @Override
-            public void onChanged(@Nullable Account account) {
-                currentAccount = account;
-                if (currentAccount != null)
-                    mTextMessage.setText("Logged in as: " + account.getUsername());
-                else
-                    mTextMessage.setText("Not logged in");
-            }
-        });
-        loginViewModel.getError().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                Toast.makeText(MainActivity.this, s, Toast.LENGTH_LONG)
-                        .show();
-                Log.d("ImgurViewer", s);
-            }
-        });
-
-    }
+//    private void initLoginViewModel(){
+//        loginViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
+//        loginViewModel.getAccount().observe(this, new Observer<Account>() {
+//            @Override
+//            public void onChanged(@Nullable Account account) {
+//                currentAccount = account;
+//                if (currentAccount != null)
+//                    mTextMessage.setText("Logged in as: " + account.getUsername());
+//                else
+//                    mTextMessage.setText("Not logged in");
+//            }
+//        });
+//        loginViewModel.getError().observe(this, new Observer<String>() {
+//            @Override
+//            public void onChanged(@Nullable String s) {
+//                Toast.makeText(MainActivity.this, s, Toast.LENGTH_LONG)
+//                        .show();
+//                Log.d("ImgurViewer", s);
+//            }
+//        });
+//
+//    }
 
     private void updateUI(){
         if (adapter == null){
@@ -190,32 +192,32 @@ public class MainActivity extends AppCompatActivity implements RecyclerView.OnIt
             adapter.updateImages(images);
     }
 
-    private void initButtons(){
-        loginButton = findViewById(R.id.button);
-        logoutButton = findViewById(R.id.button2);
-
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-            }
-        });
-
-        logoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (currentAccount != null) {
-                    loginViewModel.Delete(loginViewModel.getAccount().getValue());
-                    mTextMessage.setText("User was logged out");
-                }
-                else {
-                    Toast.makeText(MainActivity.this, "It was null...", Toast.LENGTH_LONG)
-                            .show();
-                    mTextMessage.setText("No Logged In User!");
-                }
-            }
-        });
-    }
+//    private void initButtons(){
+//        loginButton = findViewById(R.id.button);
+//        logoutButton = findViewById(R.id.button2);
+//
+//        loginButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+//            }
+//        });
+//
+//        logoutButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (currentAccount != null) {
+//                    loginViewModel.Delete(loginViewModel.getAccount().getValue());
+//                    mTextMessage.setText("User was logged out");
+//                }
+//                else {
+//                    Toast.makeText(MainActivity.this, "It was null...", Toast.LENGTH_LONG)
+//                            .show();
+//                    mTextMessage.setText("No Logged In User!");
+//                }
+//            }
+//        });
+//    }
 
     @Override
     public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {

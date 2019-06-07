@@ -27,7 +27,6 @@ public abstract class SettingsRoomDatabase extends RoomDatabase {
                 }
             }
         }
-
         return INSTANCE;
     }
 }

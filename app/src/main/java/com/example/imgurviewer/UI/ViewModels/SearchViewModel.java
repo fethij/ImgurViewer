@@ -47,6 +47,10 @@ public class SearchViewModel extends AndroidViewModel {
     }
 
     public void searchImages(String keyword, Settings settings){
+        if (settings == null){
+            settings = new Settings("time", "all", "any", "newest");
+            Insert(settings);
+        }
 
         imgurRepository.searchImages(keyword, settings)
                 .enqueue(new Callback<Images>() {

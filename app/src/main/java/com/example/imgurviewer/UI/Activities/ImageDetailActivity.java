@@ -32,6 +32,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.imgurviewer.AppFile.App;
+import com.example.imgurviewer.Models.Api.FavImage;
 import com.example.imgurviewer.Models.Api.Image;
 import com.example.imgurviewer.Models.Database.Account;
 import com.example.imgurviewer.R;
@@ -47,6 +48,7 @@ public class ImageDetailActivity extends AppCompatActivity {
     private LoginViewModel loginViewModel;
 
     private Image image;
+    private FavImage favImage;
     private Account currentAccount;
 
     private ImageView imageView;
@@ -68,12 +70,13 @@ public class ImageDetailActivity extends AppCompatActivity {
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navView.getMenu().getItem(0).setChecked(false);
 
         image = getIntent().getParcelableExtra(MainActivity.SEARCH_IMAGE_DETAILS);
         if (image != null){
             initImage(getString(R.string.btnFavoriteText));
         } else{
-            image = getIntent().getParcelableExtra(FavoritesActivity.FAVORITE_DETAILS);
+            favImage = getIntent().getParcelableExtra(FavoritesActivity.FAVORITE_DETAILS);
             initImage(getString(R.string.btnUnfavoriteText));
         }
     }
@@ -87,18 +90,30 @@ public class ImageDetailActivity extends AppCompatActivity {
         initLoginViewModel();
         initDetailViewModel();
 
-        Glide.with(this).load(image.getLink()).into(imageView);
-
-        titleText.setText(image.getTitle());
-        descriptionText.setText(image.getDescription());
-
-        favoriteButton.setText(favoriteBtnText);
-        favoriteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                detailViewModel.favoriteImage(currentAccount.getAccessToken(), image.getId());
-            }
-        });
+        if (image != null) {
+            Glide.with(this).load(image.getLink()).into(imageView);
+            titleText.setText(image.getTitle());
+            descriptionText.setText(image.getDescription());
+            favoriteButton.setText(favoriteBtnText);
+            favoriteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    detailViewModel.favoriteImage(currentAccount.getAccessToken(), image.getId());
+                }
+            });
+        }
+        else if (favImage != null){
+            Glide.with(this).load(favImage.getLink()).into(imageView);
+            titleText.setText(favImage.getTitle());
+            descriptionText.setText(favImage.getDescription());
+            favoriteButton.setText(favoriteBtnText);
+            favoriteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    detailViewModel.favoriteImage(currentAccount.getAccessToken(), favImage.getId());
+                }
+            });
+        }
     }
 
     private void initDetailViewModel(){

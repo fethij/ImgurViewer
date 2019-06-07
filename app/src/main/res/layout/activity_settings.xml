@@ -139,7 +139,7 @@
         app:layout_constraintTop_toBottomOf="@+id/settingsSearchQueryLabel" />
 
     <Spinner
-        android:id="@+id/spinner5"
+        android:id="@+id/settingsFavSearchSpinner"
         android:layout_width="395dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

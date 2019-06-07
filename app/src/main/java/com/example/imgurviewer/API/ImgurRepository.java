@@ -5,6 +5,8 @@ import android.widget.Switch;
 import com.example.imgurviewer.BuildConfig;
 import com.example.imgurviewer.Models.Api.AccountAuth;
 import com.example.imgurviewer.Models.Api.AccountAuthBody;
+import com.example.imgurviewer.Models.Api.FavImage;
+import com.example.imgurviewer.Models.Api.FavImages;
 import com.example.imgurviewer.Models.Api.Favorite;
 import com.example.imgurviewer.Models.Api.Images;
 import com.example.imgurviewer.Models.Database.Settings;
@@ -22,18 +24,18 @@ public class ImgurRepository {
         switch (settings.getQueryType()){
             case "any":
                 return imgurApiService.searchImagesAny("Client-ID " + BuildConfig.ClientId, settings.getSearch_sort(), settings.getWindow(), keywords, "png");
+            case "all":
+                return imgurApiService.searchImagesAll("Client-ID " + BuildConfig.ClientId, settings.getSearch_sort(), settings.getWindow(), keywords, "png");
+            case "exactly":
+                return imgurApiService.searchImagesExact("Client-ID " + BuildConfig.ClientId, settings.getSearch_sort(), settings.getWindow(), keywords, "png");
             default:
                 return imgurApiService.searchImages("Client-ID " + BuildConfig.ClientId, settings.getSearch_sort(), settings.getWindow(), keywords, "png");
         }
     }
 
-//    public Call<Images> searchImages (String keywords, String sort, String window) {
-//        return imgurApiService.searchImages(BuildConfig.ClientId, keywords, "png", "/" + sort, "/" + window);
-//    }
-
-//    public Call<Images> searchImagesAny (String keywords, String sort, String window) {
-//        return imgurApiService.searchImagesAny(BuildConfig.ClientId, keywords, "png", "/" + sort, "/" + window);
-//    }
+    public Call<FavImages> getFavoriteImages (String accessToken, String username, String fav_sort){
+        return imgurApiService.getUserFavorites("Bearer " + accessToken, username, fav_sort);
+    }
 
     public Call<Favorite> favoriteImage (String accessToken, String image_id){
         return imgurApiService.favoriteImage("Bearer " + accessToken, image_id);
